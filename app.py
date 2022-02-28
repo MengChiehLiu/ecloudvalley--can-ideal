@@ -48,6 +48,12 @@ def sendresult():
     options = request.form.get("options") 
     return render_template("result.html", calories=calories, prefs=prefs,price=price,options=options)
 
+@app.route("/result-maps", methods=['GET'])
+def result_maps():
+	
+    return render_template("result-maps.html")
+
+
 if __name__=="__main__":
     app.run()
 
