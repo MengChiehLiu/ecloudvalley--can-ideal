@@ -102,11 +102,11 @@
               <h1 class="card-title pricing-card-title">700<small class="text-muted fw-light"> calories</small></h1>
               <ul class="list-unstyled mt-3 mb-4">
                 <img src="static/donut.svg" width="50%" height="50%"></img>
-                <h4 id ="din_rest">肯德基</h4>
-                <li id="din_rest_menu">勁辣雞腿堡套餐</li>
+                <h4 id ="din_rest", value="肯德基">肯德基</h4>
+                <li id="din_rest_menu" value="勁辣雞腿堡套餐">勁辣雞腿堡套餐</li>
                 <li>135</li>
               </ul>
-              <button type="button" class="w-100 btn btn-lg btn-outline-primary">Find restaurants</button>
+              <button type="button" onClick="find_restaurant()" class="w-100 btn btn-lg btn-outline-primary">Find restaurants</button>
             </div>
           </div>
         </div>
@@ -126,4 +126,31 @@
     <!-- Copyright -->
   </footer>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+function find_restaurant(){
+    var i = $("#din_rest").attr("value");
+    var name_restaurant = i.toString();
+   $.ajax({
+     type: "GET",
+     url: '/getNameRest',
+     data: {"name_restaurant":name_restaurant},
+     success: function(data){
+       data = data,
+       window.location.href = 'maps'
+       
+     }
+}); 
+}
+</script>
+
+
 </html>
+
+<!-- ,
+     success: function(data) {
+        data = data
+        window.location.href = 'getNameRest' 
+     console.log(data);
+   } -->

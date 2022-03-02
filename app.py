@@ -53,6 +53,16 @@ def result_maps():
 	
     return render_template("result-maps.html")
 
+@app.route('/getNameRest', methods=['GET'])
+def name_rest():
+	print(request.args)
+	name_restaurant=request.args.get('name_restaurant')
+	print(name_restaurant)
+	return render_template('maps.html',name_restaurant = name_restaurant)
+
+# @app.route('/maps')
+# def go_to_maps():
+# 	return render_template('maps.html')
 
 if __name__=="__main__":
     app.run()
