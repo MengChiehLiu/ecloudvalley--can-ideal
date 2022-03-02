@@ -90,7 +90,7 @@
       
         <div class="row justify-content-center">
           <div class="col-md-1.5">
-            <button class="btn btn-primary btn-lg" id="vanish-button" onclick="showstep2()" type="button">下一步</button>
+            <button class="btn btn-primary btn-lg hi" id="vanish-button" onclick="showstep2()" type="button">下一步</button>
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@
       
         <div class="row justify-content-center">
           <div class="col-md-1.5">
-            <button class="btn btn-primary btn-lg" id="vanish-button" onclick="showstep3()" type="button">下一步</button>
+            <button class="btn btn-primary btn-lg hello" id="vanish-button" onclick="showstep3()" type="button">下一步</button>
           </div>
         </div>
       </div>
@@ -211,7 +211,7 @@
     let inputValue = document.getElementById("domTextElement").value; 
     document.getElementById("valueInput").innerHTML = inputValue; 
     }
-
+  
 //     function showdiv(id) {
 //       try {
 //           var sbtitle = document.getElementById(id);
@@ -258,6 +258,25 @@ function setBubble(range, bubble) {
 
 
   </script>
+  
+  <script>
+    let result = []
+    document.querySelectorAll('.hi').forEach(item => {
+      item.addEventListener('click', event => {
+        // console.log(document.querySelectorAll('output.bubble'))
+        const calories = document.querySelectorAll('output.bubble')[1].innerText
+        result.push(calories)
+      })
+    })
+    document.querySelectorAll('.hello').forEach(item => {
+      item.addEventListener('click', event => {
+        // console.log(document.querySelectorAll('output.bubble'))
+        const price = document.querySelectorAll('output.bubble')[1].innerText
+        result.push(price)
+      })
+    })
+    console.log(result)
+    </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
     function showstep1() {
@@ -304,5 +323,5 @@ function showstep4() {
     });
   });
   </script> -->
-
+  </script>
 </html>
