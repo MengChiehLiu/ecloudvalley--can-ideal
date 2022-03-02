@@ -95,6 +95,9 @@ width: 100%;">
 <!-- tomtom maps css -->
 <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps.css'>
 <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps-web.min.js'></script>
+<script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/services/services-web.min.js'></script>
+<script data-showable type="text/javascript" src="../static/V6/assets/js/search-markers/search-marker.js"></script>
+<script data-showable type="text/javascript" src="../static/V6/assets/js/search-markers/search-markers-manager.js"></script>
 <script>
   var map = tt.map({
   key: 't8mzsHzIN7YRuAu1xrwBZnE31FRBvmXa',
@@ -102,9 +105,39 @@ width: 100%;">
   zoom: 10,
   countrySet: 'TWN',
   center:[121.5654,25.0330]
-  });
-  
+  }); 
+
+function callbackFn(result) {
+  console.log(result.results[0].position);
+  var results = result.results;
+  var resultLen = results.length;
+  return results;
+  // console.log(results[0]);
+  // console.log(resultLen);
+  // for (var i = resultLen; i < resultLen.length; i++){
+  //   console.log(results[0])
+  //   new tt.Marker().setLngLat(results[0].position).addTo(map);
+  // }
+};
+
+tt.services.categorySearch({
+   key: 't8mzsHzIN7YRuAu1xrwBZnE31FRBvmXa',
+   query: 'fast food',
+   center:[121.5654,25.0330]
+})
+.then(callbackFn).then(result=>{
+  console.log(result);
+  var resultLen = result.length;
+  resultLen = parseInt(resultLen);
+  for (var i = 0; i < resultLen; i++){
+    console.log(result[i]);
+    new tt.Marker().setLngLat(result[i].position).addTo(map);
+  }
+});
+
   // get Location 
+  var latlng = {lng: 121.56489, lat: 25.0331};
+  new tt.Marker().setLngLat(latlng).addTo(map);
   map.addControl(new tt.FullscreenControl());
   map.addControl(new tt.NavigationControl());
   map.addControl(new tt.GeolocateControl({
@@ -142,7 +175,7 @@ function handlePermissionDenied() {
 }
 
 function bindEvents() {
-    geolocateControl.on('error', handleError);
+    tt.geolocateControl.on('error', handleError);
     messageBoxClose.addEventListener('click', handleMessageBoxClose);
 }
 
@@ -166,20 +199,18 @@ function handleError(error) {
     }
 }
 
-function show_maps(restaurant){
+// var searchMarkersManager = new SearchMarkersManager(map);
 
-  var rest= document.getElementById(restaurant);
-
-  var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                alert(xhr.response);
-            }
-        }
-        xhr.open('post', '/result_maps', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        xhr.send(bf_rest);
-}
+//   tt.services.categorySearch({
+//       key: "t8mzsHzIN7YRuAu1xrwBZnE31FRBvmXa",
+//       query: "肯德基",
+//       center: [121.485653,25.07721],
+//       radius: 1000,
+//       limit: 50,
+//     })
+//     .then((response) => searchMarkersManager.draw(response.results))
+//     .then(() => map.fitBounds(searchMarkersManager.getMarkersBounds(), 
+//       { padding: 50 }));
 </script>
   
 
@@ -207,54 +238,5 @@ bubble.innerHTML = val;
 // Sorta magic numbers based on size of the native UI thumb
 bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
 }
-
-
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-  function showstep1() {
-  console.log("show form")
-  $("#fade-div0").fadeOut(200)
-  setTimeout(function(){
-    $("#fade-div1").fadeIn(200)
-  }, 200);
-  click_number +=1;
-}
-function showstep2() {
-  console.log("show form")
-  $("#fade-div1").fadeOut(200)
-  setTimeout(function(){
-    $("#fade-div2").fadeIn(200)
-  }, 200);
-  click_number +=1;
-}
-
-function showstep3() {
-  console.log("show form")
-  $("#fade-div2").fadeOut(200)
-  setTimeout(function(){
-    $("#fade-div3").fadeIn(200)
-  }, 200);
-  click_number +=1;
-}
-
-function showstep4() {
-  console.log("show form")
-  $("#fade-div3").fadeOut(200)
-  setTimeout(function(){
-    $("#fade-div4").fadeIn(200)
-  }, 200);
-  click_number +=1;
-}
-
-</script>
-<!-- <script>
-$(document).ready(function(){
-  $("#vanish-button").click(function(){
-    $("#fadeout-div").fadeOut("3000");
-    $("#fadein-div").fadeIn("3000");
-  });
-});
-</script> -->
-
 </html>
