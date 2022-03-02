@@ -132,25 +132,11 @@
 function find_restaurant(){
     var i = $("#din_rest").attr("value");
     var name_restaurant = i.toString();
-   $.ajax({
-     type: "GET",
-     url: '/getNameRest',
-     data: {"name_restaurant":name_restaurant},
-     success: function(data){
-       data = data,
-       window.location.href = 'maps'
-       
-     }
-}); 
+    window.location.replace("getNameRest?"+"name_restaurant="+name_restaurant)   
+ 
 }
 </script>
 
 
 </html>
 
-<!-- ,
-     success: function(data) {
-        data = data
-        window.location.href = 'getNameRest' 
-     console.log(data);
-   } -->
