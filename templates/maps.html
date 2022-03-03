@@ -65,9 +65,9 @@
 
 <main>
  <!-- maps showed the restaurant -->
- <div>
-   <p> {{name_restaurant}} </p>
- </div>
+ <!-- <div>
+   <p class="name_restaurant"> {{name_restaurant}} </p>
+ </div> -->
  <div id='map-div' class='map'>
     <div class='tt-overlay-panel -center js-message-box' hidden>
       <button class='tt-overlay-panel__close js-message-box-close'></button>
@@ -91,7 +91,7 @@ width: 100%;">
   <!-- Copyright -->
 </footer>
 </body>
-
+<span id="abc" data-restaurant="{{name_restaurant}}"></span>
 <!-- tomtom maps css -->
 <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps.css'>
 <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps-web.min.js'></script>
@@ -99,6 +99,7 @@ width: 100%;">
 <script data-showable type="text/javascript" src="../static/V6/assets/js/search-markers/search-marker.js"></script>
 <script data-showable type="text/javascript" src="../static/V6/assets/js/search-markers/search-markers-manager.js"></script>
 <script>
+  
   var map = tt.map({
   key: 't8mzsHzIN7YRuAu1xrwBZnE31FRBvmXa',
   container: 'map-div',
@@ -112,17 +113,14 @@ function callbackFn(result) {
   var results = result.results;
   var resultLen = results.length;
   return results;
-  // console.log(results[0]);
-  // console.log(resultLen);
-  // for (var i = resultLen; i < resultLen.length; i++){
-  //   console.log(results[0])
-  //   new tt.Marker().setLngLat(results[0].position).addTo(map);
-  // }
 };
+
+var name_restaurant = JSON.parse(document.getElementById('abc').getAttribute('data-restaurant'));
+console.log(name_restaurant);
 
 tt.services.categorySearch({
    key: 't8mzsHzIN7YRuAu1xrwBZnE31FRBvmXa',
-   query: 'fast food',
+   query: query,
    center:[121.5654,25.0330]
 })
 .then(callbackFn).then(result=>{

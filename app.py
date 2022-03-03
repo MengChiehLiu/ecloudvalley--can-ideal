@@ -2,6 +2,7 @@ import os
 from random import randint
 import pandas as pd
 from flask import Flask, abort, request, render_template, redirect, url_for
+import json
 def suggest_function(height, weight, activity):
 	
 	# 計算BMI
@@ -58,7 +59,7 @@ def name_rest():
 	print(request.args)
 	name_restaurant=request.args.get('name_restaurant')
 	print(name_restaurant)
-	return render_template('maps.html',name_restaurant = name_restaurant)
+	return render_template('maps.html',name_restaurant = json.dumps(name_restaurant))
 
 # @app.route('/maps')
 # def go_to_maps():
