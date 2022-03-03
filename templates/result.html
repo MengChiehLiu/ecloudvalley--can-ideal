@@ -34,6 +34,10 @@
 
   </head>
 <body style="background-color: #EBE7E0; overflow-y: scroll; overflow-x: hidden;">
+  <section>
+    <img src="static\cloud-3.png" style="position:absolute;right: 30px;bottom: 80px;z-index: -1;"></img>
+    <img src="static\cloud-3.png" style="position:absolute;left: 30px; top: 100px;z-index: -1;"></img>
+  </section>
 
   <header >
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom bg-dark text-center text-white" >
@@ -43,18 +47,18 @@
         <span class="fs-4 text-white">Can Ideal</span>
       </a>
     </div>
-    <nav class="d-inline-flex mt-3 mt-md-0 ms-md-auto">
-      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">首頁</a>
-      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">卡路里地圖</a>
-      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="/calculator">熱量計算機</a>
-      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="">營養素計算機</a>
-      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#" >關於我們</a>
-    </nav>
+      <nav class="d-inline-flex mt-3 mt-md-0 ms-md-auto">
+        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="/">首頁</a>
+        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">卡路里地圖</a>
+        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="/calculator">熱量計算機</a>
+        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="">營養素計算機</a>
+        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#" >關於我們</a>
+      </nav>
     </div>
 
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
       <h1 class="display-4 fw-normal">Bon Appetit!</h1>
-      <h2>Total consumption is {{calories}} calories.</h2>
+      <h2>Total consumption is {{total_consume}} calories.</h2>
       <div class="row justify-content-center">
         <div class="col-md-2">
           <a class="w-100 btn btn-lg btn-success mt-3" href="/" role="button">回首頁</a>
@@ -72,7 +76,8 @@
             <button type="submit" class="w-100 btn btn-lg btn-danger mt-3">換一組</button>
           </form>
         </div>
-      </div>  
+      </div>
+      
     </div>
   </header>
 
@@ -86,18 +91,20 @@
             <div class="card-body">
               <h1 class="card-title pricing-card-title">{{a_calories}}<small class="text-muted fw-light"> calories</small></h1>
               <ul class="list-unstyled mt-3 mb-4">
-                <img src="static/donut.svg" width="50%" height="50%"></img>
+                <div style="height:250px;">
+                  <img src="{{a_pic}}" width="75%"></img>
+                </div>
                 <h4 id="bf_rest">{{a_name}}</h4>
                 <li id="bf_rest_menu">{{a_f_name}}</li>
                 <li id="bf_price">${{a_price}}</li>
               </ul>
               <div style="height:400px">
-                <iframe height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=麥當勞&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="yes" marginheight="1" marginwidth="1"  >
+                <iframe height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q={{a_name}}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="yes" marginheight="1" marginwidth="1"  >
                 </iframe>
                 </div>
-                <button type="button" class="w-100 btn btn-lg btn-dark mt-3">官方網站</button>
+                <a class="w-100 btn btn-lg btn-dark mt-3" href="{{a_web}}" role="button">官方網站</a>
                 <button type="button" class="w-100 btn btn-lg btn-outline-dark mt-3">立即訂位</button>
-                <button type="button" onClick="find_restaurant('bf_rest')" class="w-100 btn btn-lg btn-dark mt-3">Full Maps</button>
+                <button type="button" onClick="find_restaurant('bf_rest')" class="w-100 btn btn-lg btn-dark mt-3">完整地圖</button>
             </div>
           </div>
         </div>
@@ -110,18 +117,20 @@
             <div class="card-body">
               <h1 class="card-title pricing-card-title">{{b_calories}}<small class="text-muted fw-light"> calories</small></h1>
               <ul class="list-unstyled mt-3 mb-4">
-                <img src="static/donut.svg" width="50%" height="50%"></img>
+                <div style="height:250px;">
+                  <img src="{{b_pic}}" width="75%"></img>
+                </div>
                 <h4 id="lc_rest">{{b_name}}</h4>
                 <li id="lc_rest_menu">{{b_f_name}}</li>
                 <li id="lc_price">${{b_price}}</li>
               </ul>
               <div style="height:400px">
-                <iframe height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=Subway&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="yes" marginheight="1" marginwidth="1"  >
+                <iframe height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q={{b_name}}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="yes" marginheight="1" marginwidth="1"  >
                 </iframe>
                 </div>
-                <button type="button" class="w-100 btn btn-lg btn-dark mt-3">官方網站</button>
+                <a class="w-100 btn btn-lg btn-dark mt-3" href="{{b_web}}" role="button">官方網站</a>
                 <button type="button" class="w-100 btn btn-lg btn-outline-dark mt-3">立即訂位</button>
-                <button type="button" onClick="find_restaurant('lc_rest')" class="w-100 btn btn-lg btn-dark mt-3">Full Maps</button>
+                <button type="button" onClick="find_restaurant('lc_rest')" class="w-100 btn btn-lg btn-dark mt-3">完整地圖</button>
             </div>
           </div>
         </div>
@@ -133,21 +142,25 @@
             <div class="card-body">
               <h1 class="card-title pricing-card-title">{{c_calories}}<small class="text-muted fw-light"> calories</small></h1>
               <ul class="list-unstyled mt-3 mb-4">
-                <img src="static/donut.svg" width="50%" height="50%"></img>
-                <h4 id="din_rest">麥當勞</h4>
-                <li id="din_rest_menu">{{c_food_name}}</li>
+                <div style="height:250px;">
+                  <img src="{{c_pic}}" width="75%"></img>
+                </div>
+                <h4 id="din_rest">{{c_name}}</h4>
+                <li id="din_rest_menu">{{c_f_name}}</li>
                 <li id="din_price">${{c_price}}</li>
               </ul>
               <div style="height:400px">
-              <iframe height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=肯德基&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="yes" marginheight="1" marginwidth="1"  >
+              <iframe height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q={{c_name}}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="yes" marginheight="1" marginwidth="1"  >
               </iframe>
               </div>
-              <button type="button" class="w-100 btn btn-lg btn-dark mt-3">官方網站</button>
+              <a class="w-100 btn btn-lg btn-dark mt-3" href="{{c_web}}" role="button">官方網站</a>
               <button type="button" class="w-100 btn btn-lg btn-outline-dark mt-3">立即訂位</button>
-              <button type="button" onClick="find_restaurant('din_rest')" class="w-100 btn btn-lg btn-dark mt-3">Full Maps</button>
+              <button type="button" onClick="find_restaurant('din_rest')" class="w-100 btn btn-lg btn-dark mt-3">完整地圖</button>
             </div>
           </div>
         </div>
+      </div>
+
   </main>
 
   <footer class="bg-dark text-center text-white" style="left: 0;
@@ -164,7 +177,6 @@
     <!-- Copyright -->
   </footer>
 </body>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 function find_restaurant(tag){
@@ -173,7 +185,6 @@ function find_restaurant(tag){
   window.location.replace("getNameRest?"+"name_restaurant="+name_restaurant);   
 };
 </script>
-
-
 </html>
 
+<!-- <div class="mapouter"><div class="gmap_canvas"><iframe width="250" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=%E9%BA%A5%E7%95%B6%E5%8B%9E&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://fmovies-online.net">fmovies</a><br><style>.mapouter{position:relative;text-align:right;height:300px;width:250px;}</style><a href="https://www.embedgooglemap.net">embed custom google map</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:300px;width:250px;}</style></div></div> -->
