@@ -84,12 +84,12 @@
               <h4 class="my-0 fw-normal">Breakfast</h4>
             </div>
             <div class="card-body">
-              <h1 class="card-title pricing-card-title">500<small class="text-muted fw-light"> calories</small></h1>
+              <h1 class="card-title pricing-card-title">{{a_calories}}<small class="text-muted fw-light"> calories</small></h1>
               <ul class="list-unstyled mt-3 mb-4">
                 <img src="static/donut.svg" width="50%" height="50%"></img>
-                <h4 id="bf_rest">麥當勞</h4>
-                <li id="bf_rest_menu">吉士蛋堡</li>
-                <li>$30</li>
+                <h4 id="bf_rest">{{a_name}}</h4>
+                <li id="bf_rest_menu">{{a_f_name}}</li>
+                <li id="bf_price">${{a_price}}</li>
               </ul>
               <div style="height:400px">
                 <iframe height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=麥當勞&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="yes" marginheight="1" marginwidth="1"  >
@@ -97,6 +97,7 @@
                 </div>
                 <button type="button" class="w-100 btn btn-lg btn-dark mt-3">官方網站</button>
                 <button type="button" class="w-100 btn btn-lg btn-outline-dark mt-3">立即訂位</button>
+                <button type="button" onClick="find_restaurant('bf_rest')" class="w-100 btn btn-lg btn-dark mt-3">Full Maps</button>
             </div>
           </div>
         </div>
@@ -107,12 +108,12 @@
               <h4 class="my-0 fw-normal">Lunch</h4>
             </div>
             <div class="card-body">
-              <h1 class="card-title pricing-card-title">800<small class="text-muted fw-light"> calories</small></h1>
+              <h1 class="card-title pricing-card-title">{{b_calories}}<small class="text-muted fw-light"> calories</small></h1>
               <ul class="list-unstyled mt-3 mb-4">
                 <img src="static/donut.svg" width="50%" height="50%"></img>
-                <h4 id="lc_rest">Subway</h4>
-                <li id="lc_rest_menu">火雞胸肉潛艇堡</li>
-                <li>$90</li>
+                <h4 id="lc_rest">{{b_name}}</h4>
+                <li id="lc_rest_menu">{{b_f_name}}</li>
+                <li id="lc_price">${{b_price}}</li>
               </ul>
               <div style="height:400px">
                 <iframe height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=Subway&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="yes" marginheight="1" marginwidth="1"  >
@@ -120,6 +121,7 @@
                 </div>
                 <button type="button" class="w-100 btn btn-lg btn-dark mt-3">官方網站</button>
                 <button type="button" class="w-100 btn btn-lg btn-outline-dark mt-3">立即訂位</button>
+                <button type="button" onClick="find_restaurant('lc_rest')" class="w-100 btn btn-lg btn-dark mt-3">Full Maps</button>
             </div>
           </div>
         </div>
@@ -129,12 +131,12 @@
               <h4 class="my-0 fw-normal">Dinner</h4>
             </div>
             <div class="card-body">
-              <h1 class="card-title pricing-card-title">700<small class="text-muted fw-light"> calories</small></h1>
+              <h1 class="card-title pricing-card-title">{{c_calories}}<small class="text-muted fw-light"> calories</small></h1>
               <ul class="list-unstyled mt-3 mb-4">
                 <img src="static/donut.svg" width="50%" height="50%"></img>
-                <h4 id="din_rest">肯德基</h4>
-                <li id="din_rest_menu">勁辣雞腿堡套餐</li>
-                <li>$135</li>
+                <h4 id="din_rest">麥當勞</h4>
+                <li id="din_rest_menu">{{c_food_name}}</li>
+                <li id="din_price">${{c_price}}</li>
               </ul>
               <div style="height:400px">
               <iframe height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=肯德基&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="yes" marginheight="1" marginwidth="1"  >
@@ -142,7 +144,7 @@
               </div>
               <button type="button" class="w-100 btn btn-lg btn-dark mt-3">官方網站</button>
               <button type="button" class="w-100 btn btn-lg btn-outline-dark mt-3">立即訂位</button>
-              <!-- <button type="button" onClick="find_restaurant()" class="w-100 btn btn-lg btn-dark mt-3">Full Maps</button> -->
+              <button type="button" onClick="find_restaurant('din_rest')" class="w-100 btn btn-lg btn-dark mt-3">Full Maps</button>
             </div>
           </div>
         </div>
@@ -165,12 +167,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-function find_restaurant(){
-    var i = $("#din_rest").attr("value");
-    var name_restaurant = i.toString();
-    window.location.replace("getNameRest?"+"name_restaurant="+name_restaurant)   
- 
-}
+function find_restaurant(tag){
+  var selector = "#"+tag;
+  var name_restaurant=$(selector).text();
+  window.location.replace("getNameRest?"+"name_restaurant="+name_restaurant);   
+};
 </script>
 
 

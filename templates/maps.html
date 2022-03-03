@@ -19,13 +19,6 @@
 
 
     <style>
-      /* .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      } */
 
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
@@ -50,12 +43,13 @@
         <span class="fs-4 text-white">Cloud Nine</span>
       </a>
     </div>
-      <nav class="d-inline-flex mt-3 mt-md-0 ms-md-auto">
-        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">Calculator</a>
-        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="">Nutrition</a>
-        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">Button3</a>
-        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#" >Button4</a>
-      </nav>
+    <nav class="d-inline-flex mt-3 mt-md-0 ms-md-auto">
+      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">首頁</a>
+      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">卡路里地圖</a>
+      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="/calculator">熱量計算機</a>
+      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="">營養素計算機</a>
+      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#" >關於我們</a>
+    </nav>
     </div>
 
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
@@ -64,10 +58,7 @@
   </header>
 
 <main>
- <!-- maps showed the restaurant -->
- <!-- <div>
-   <p class="name_restaurant"> {{name_restaurant}} </p>
- </div> -->
+
  <div id='map-div' class='map'>
     <div class='tt-overlay-panel -center js-message-box' hidden>
       <button class='tt-overlay-panel__close js-message-box-close'></button>
@@ -91,13 +82,16 @@ width: 100%;">
   <!-- Copyright -->
 </footer>
 </body>
-<span id="abc" data-restaurant="{{name_restaurant}}"></span>
+<span id="name_rest" data-restaurant="{{name_restaurant}}"></span>
+
+
 <!-- tomtom maps css -->
 <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps.css'>
 <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps-web.min.js'></script>
 <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/services/services-web.min.js'></script>
 <script data-showable type="text/javascript" src="../static/V6/assets/js/search-markers/search-marker.js"></script>
 <script data-showable type="text/javascript" src="../static/V6/assets/js/search-markers/search-markers-manager.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
   
   var map = tt.map({
@@ -108,34 +102,31 @@ width: 100%;">
   center:[121.5654,25.0330]
   }); 
 
-function callbackFn(result) {
-  console.log(result.results[0].position);
-  var results = result.results;
-  var resultLen = results.length;
-  return results;
-};
+// function callbackFn(result) {
+//   console.log(result.results[0].position);
+//   var results = result.results;
+//   var resultLen = results.length;
+//   return results;
+// };
 
-var name_restaurant = JSON.parse(document.getElementById('abc').getAttribute('data-restaurant'));
-console.log(name_restaurant);
 
-tt.services.categorySearch({
-   key: 't8mzsHzIN7YRuAu1xrwBZnE31FRBvmXa',
-   query: 'restaurant',
-   center:[121.5654,25.0330]
-})
-.then(callbackFn).then(result=>{
-  console.log(result);
-  var resultLen = result.length;
-  resultLen = parseInt(resultLen);
-  for (var i = 0; i < resultLen; i++){
-    console.log(result[i]);
-    new tt.Marker().setLngLat(result[i].position).addTo(map);
-  }
-});
 
-  // get Location 
-  var latlng = {lng: 121.56489, lat: 25.0331};
-  new tt.Marker().setLngLat(latlng).addTo(map);
+
+// tt.services.categorySearch({
+//    key: 't8mzsHzIN7YRuAu1xrwBZnE31FRBvmXa',
+//    query: 'restaurant',
+//    center:[121.5654,25.0330]
+// })
+// .then(callbackFn).then(result=>{
+//   console.log(result);
+//   var resultLen = result.length;
+//   resultLen = parseInt(resultLen);
+//   for (var i = 0; i < resultLen; i++){
+//     console.log(result[i]);
+//     new tt.Marker().setLngLat(result[i].position).addTo(map);
+//   }
+// });
+
   map.addControl(new tt.FullscreenControl());
   map.addControl(new tt.NavigationControl());
   map.addControl(new tt.GeolocateControl({
@@ -156,7 +147,7 @@ tt.services.categorySearch({
             notAvailable: 'Geolocation data provider not available.'
         };
 
-  bindEvents();
+  // bindEvents();
 
   // Handle case when domain permissions are already blocked
   handlePermissionDenied();
@@ -172,10 +163,10 @@ function handlePermissionDenied() {
     }
 }
 
-function bindEvents() {
-    tt.geolocateControl.on('error', handleError);
-    messageBoxClose.addEventListener('click', handleMessageBoxClose);
-}
+// function bindEvents() {
+//     tt.geolocateControl.on('error', handleError);
+//     messageBoxClose.addEventListener('click', handleMessageBoxClose);
+// }
 
 function handleMessageBoxClose() {
     messageBox.setAttribute('hidden', true);
@@ -197,44 +188,37 @@ function handleError(error) {
     }
 }
 
-// var searchMarkersManager = new SearchMarkersManager(map);
+var name_restaurant = JSON.parse(document.getElementById('name_rest').getAttribute('data-restaurant'));
+getLocRest(name_restaurant);
+  function getLocRest(name_restaurant){
+    $.ajax({
+    type:'GET',
+    url: "https://api.tomtom.com/search/2/search/"+name_restaurant+".json",
+    lat:25.0330,
+    lon:121.5654,
+    data:{
+      countrySet:'TWN',
+      key:'t8mzsHzIN7YRuAu1xrwBZnE31FRBvmXa',
+      limit: 100
+    },
+    success:function(response){
+      console.log("Succesfully Fetch");
+      console.log(response);
+      var resultLen = response.results.length;
+      resultLen = parseInt(resultLen);
+      for (var i = 0; i < resultLen; i++){
+        var position = response.results[i].position;
+        new tt.Marker().setLngLat(position).addTo(map);
+      }
+    },
+    error:function(xhr){
+      console.log("FAILED to FETCH")
+      console.log(xhr.status);
+    }  
+  });
+  };  
 
-//   tt.services.categorySearch({
-//       key: "t8mzsHzIN7YRuAu1xrwBZnE31FRBvmXa",
-//       query: "肯德基",
-//       center: [121.485653,25.07721],
-//       radius: 1000,
-//       limit: 50,
-//     })
-//     .then((response) => searchMarkersManager.draw(response.results))
-//     .then(() => map.fitBounds(searchMarkersManager.getMarkersBounds(), 
-//       { padding: 50 }));
-</script>
   
-
-<script src="scripts/main.js"></script>
-<script>
-
-const allRanges = document.querySelectorAll(".range-wrap");
-allRanges.forEach(wrap => {
-const range = wrap.querySelector(".form-range");
-const bubble = wrap.querySelector(".bubble");
-
-range.addEventListener("input", () => {
-  setBubble(range, bubble);
-});
-setBubble(range, bubble);
-});
-
-function setBubble(range, bubble) {
-const val = range.value;
-const min = range.min ? range.min : 0;
-const max = range.max ? range.max : 100;
-const newVal = Number(((val - min) * 100) / (max - min));
-bubble.innerHTML = val;
-
-// Sorta magic numbers based on size of the native UI thumb
-bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
-}
 </script>
+
 </html>
