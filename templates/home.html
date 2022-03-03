@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,176 +36,180 @@
     </style>
 
   </head>
-<body style="background-color: #EBE7E0;">
 
+  <body style="background-color: #EBE7E0;">
 
-<div >
-
-  <header >
-    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom bg-dark text-center text-white" >
-      <div class="mt-2">
-      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <img src="static/9.png" width="50" height="50"/>
-        <span class="fs-4 text-white">Cloud Nine</span>
-      </a>
-    </div>
-      <nav class="d-inline-flex mt-3 mt-md-0 ms-md-auto">
-        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">Calculator</a>
-        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="">Nutrition</a>
-        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">Button3</a>
-        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#" >Button4</a>
-      </nav>
-    </div>
-
-    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-      <img src="static/can ideal 2.png" height="200"><img>
-    </div>
-  </header>
-
-  <main>
-    <form action="/result" method="POST"> 
-    <div class="container text-center">
-      <!-- 開始頁 -->
-      <div class="row justify-content-center" id="fade-div0">
-        <h3 class="fs-5 text-muted mt-4">歡迎來到卡路里地圖，您可以自行設定一天的卡路里攝取量，</h3>
-        <h3 class="fs-5 text-muted mt-2">我們會根據您的個人偏好、所在位置隨機推薦出適合您的三餐組合。</h3>
-        <div class="col-md-1.5">
-          <button class="btn btn-primary btn-lg mt-3" id="vanish-button" onclick="showstep1()" type="button">開始體驗</button>
-        </div>
+    <header >
+      <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom bg-dark text-center text-white" >
+        <div class="mt-2">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+          <img src="static/9.png" width="50" height="50"/>
+          <span class="fs-4 text-white">Can Ideal</span>
+        </a>
+      </div>
+        <nav class="d-inline-flex mt-3 mt-md-0 ms-md-auto">
+          <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">首頁</a>
+          <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">卡路里地圖</a>
+          <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="/calculator">熱量計算機</a>
+          <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="">營養素計算機</a>
+          <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#" >關於我們</a>
+        </nav>
       </div>
 
-      <!-- Step 1 -->
-      <div id="fade-div1" style="display:none;">
-        <div class="row g-3 justify-content-center align-items-center text-center mt-3">
-          <h4>第一步: 選擇卡路里</h4>
+      <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <img src="static/can ideal 2.png" height="200"><img>
+      </div>
+    </header>
+
+    <section>
+      <img src="static\cloud-3.png" style="position:absolute;right: 30px;bottom: 80px;z-index: -1;"></img>
+      <img src="static\cloud-3.png" style="position:absolute;left: 30px; top: 100px;z-index: -1;"></img>
+    </section>
+
+    <main>
+      <form action="/result" method="POST"> 
+      <div class="container text-center">
+        <!-- 開始頁 -->
+        <div class="row justify-content-center" id="fade-div0">
+          <h3 class="fs-5 text-muted mt-4">歡迎來到卡路里地圖，您可以自行設定一天的卡路里攝取量，</h3>
+          <h3 class="fs-5 text-muted mt-2">我們會根據您的個人偏好、所在位置隨機推薦出適合您的三餐組合。</h3>
+          <div class="col-md-1.5">
+            <button class="btn btn-dark btn-lg mt-3" id="vanish-button" onclick="showstep1()" type="button">開始體驗</button>
+          </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div id="fade-div1" style="display:none;">
+          <div class="row g-3 justify-content-center align-items-center text-center mt-3">
+            <h4>第一步: 選擇卡路里</h4>
+            <div class="col-md-3"></div>
+            <div class="col-md-6" >
+              <div class="range-wrap">
+                <input type="range" class="form-range" min="1000" max="4000" name="calories" style="border: 3px solid #0d6efd; border-radius: 15px;">
+                <output class="bubble"></output>
+                <p>卡路里</p>
+              </div>
+            </div>
           <div class="col-md-3"></div>
-          <div class="col-md-6" >
-            <div class="range-wrap">
-              <input type="range" class="form-range" min="1000" max="4000" name="calories">
-              <output class="bubble"></output>
-              <p>卡路里</p>
+          </div>
+        
+          <div class="row justify-content-center">
+            <div class="col-md-1.5">
+              <button class="btn btn-dark btn-lg" id="vanish-button" onclick="showstep2()" type="button">下一步</button>
             </div>
           </div>
-        <div class="col-md-3"></div>
         </div>
-      
-        <div class="row justify-content-center">
-          <div class="col-md-1.5">
-            <button class="btn btn-primary btn-lg" id="vanish-button" onclick="showstep2()" type="button">下一步</button>
-          </div>
-        </div>
-      </div>
 
-      <!-- Step 2 Price -->
-      <div id="fade-div2" style="display:none;">
-        <div class="row g-3 justify-content-center align-items-center text-center mt-3">
-          <h4>第二步: 選擇價格上限</h4>
+        <!-- Step 2 Price -->
+        <div id="fade-div2" style="display:none;">
+          <div class="row g-3 justify-content-center align-items-center text-center mt-3">
+            <h4>第二步: 選擇價格上限</h4>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <div class="range-wrap">
+                <input type="range" class="form-range" min="200" max="1000" name="price" style="border: 3px solid #0d6efd; border-radius: 15px;">
+                <output class="bubble"></output>
+                <p>元</p>
+              </div>
+            </div>
           <div class="col-md-3"></div>
-          <div class="col-md-6">
-            <div class="range-wrap">
-              <input type="range" class="form-range" min="200" max="1000" name="price">
-              <output class="bubble"></output>
-              <p>元</p>
-            </div>
           </div>
-        <div class="col-md-3"></div>
-        </div>
-      
-        <div class="row justify-content-center">
-          <div class="col-md-1.5">
-            <button class="btn btn-primary btn-lg" id="vanish-button" onclick="showstep3()" type="button">下一步</button>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Step 3 -->
-      <div id="fade-div3" style="display:none;">
-        <div class="row g-3 mt-3">
-          <h4>第三步: 請選擇熱量偏好</h4>
-          <div class="col-md-4 mt-0"></div>
-          <div class="btn-group btn-group-lg col-md-4" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked value="breakfast"/>
-            <label class="btn btn-outline-primary" for="option1">早餐多一點</label>
-          
-            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" value="lunch"/>
-            <label class="btn btn-outline-primary" for="option2">午餐多一點</label>
-          
-            <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" value="dinner"/>
-            <label class="btn btn-outline-primary" for="option3">晚餐多一點</label>
-          </div>
-
-          <div class="col-md-4 mt-0 h-3"></div>
-        </div>
-      
-        <div class="row justify-content-center mt-5">
-          <div class="col-md-1.5">
-            <button class="btn btn-primary btn-lg" id="vanish-button" onclick="showstep4()" type="button">下一步</button>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Step 4 -->
-      <div id="fade-div4" style="display:none;">
-        <div class="row g-3 mt-3" justify-content-center>
-          <h4>第四步: 請選擇喜好的食物類型(可複選)</h4>
-          <div class="col mt-2">
-            <div class="form-check form-check-inline">
-              <label><input class="form-check-input" type="checkbox" name="japan">日式</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <label><input class="form-check-input" type="checkbox" name="korea">韓式</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <label><input class="form-check-input" type="checkbox" name="china">中式</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <label><input class="form-check-input" type="checkbox" name="taiwan">台式</label>
+        
+          <div class="row justify-content-center">
+            <div class="col-md-1.5">
+              <button class="btn btn-dark btn-lg" id="vanish-button" onclick="showstep3()" type="button">下一步</button>
             </div>
           </div>
         </div>
-        <div class="row g-3 mt-2" justify-content-center>
-          <div class="col mt-2">
-            <div class="form-check form-check-inline">
-              <label><input class="form-check-input" type="checkbox" name="usa">美式</label>
+
+
+        <!-- Step 3 -->
+        <div id="fade-div3" style="display:none;">
+          <div class="row g-3 mt-3">
+            <h4>第三步: 請選擇熱量偏好</h4>
+            <div class="col-md-4 mt-0"></div>
+            <div class="btn-group btn-group-lg col-md-4" role="group" aria-label="Basic radio toggle button group">
+              <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked value="breakfast"/>
+              <label class="btn btn-outline-primary" for="option1">早餐多一點</label>
+            
+              <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" value="lunch"/>
+              <label class="btn btn-outline-primary" for="option2">午餐多一點</label>
+            
+              <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" value="dinner"/>
+              <label class="btn btn-outline-primary" for="option3">晚餐多一點</label>
             </div>
-            <div class="form-check form-check-inline">
-              <label><input class="form-check-input" type="checkbox" name="thai">泰式</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <label><input class="form-check-input" type="checkbox" name="southeast">東南亞</label>
+
+            <div class="col-md-4 mt-0 h-3"></div>
+          </div>
+        
+          <div class="row justify-content-center mt-5">
+            <div class="col-md-1.5">
+              <button class="btn btn-dark btn-lg" id="vanish-button" onclick="showstep4()" type="button">下一步</button>
             </div>
           </div>
         </div>
-        <div class="row justify-content-center mt-3">
-          <div class="col-md-1.5">
-            <button class="btn btn-primary btn-lg" id="vanish-button" type="submit">確認送出</button>
+        
+        <!-- Step 4 -->
+        <div id="fade-div4" style="display:none;">
+          <div class="row g-3 mt-3" justify-content-center>
+            <h4>第四步: 請選擇喜好的食物類型(可複選)</h4>
+            <div class="col mt-2">
+              <div class="form-check form-check-inline">
+                <label><input class="form-check-input" type="checkbox" name="select-all" id="select-all">全選</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <label><input class="form-check-input" type="checkbox" name="japan" >日式</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <label><input class="form-check-input" type="checkbox" name="korea" >韓式</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <label><input class="form-check-input" type="checkbox" name="china" >中式</label>
+              </div>
+            </div>
+          </div>
+          <div class="row g-3 mt-2" justify-content-center>
+            <div class="col mt-2">
+              <div class="form-check form-check-inline">
+                <label><input class="form-check-input" type="checkbox" name="taiwan" >台式</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <label><input class="form-check-input" type="checkbox" name="usa" >美式</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <label><input class="form-check-input" type="checkbox" name="thai" >泰式</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <label><input class="form-check-input" type="checkbox" name="southeast" >東南亞</label>
+              </div>
+
+            </div>
+          </div>
+          <div class="row justify-content-center mt-3">
+            <div class="col-md-1.5">
+              <button class="btn btn-dark btn-lg" id="vanish-button" type="submit">確認送出</button>
+            </div>
+          </div>
           </div>
         </div>
-        </div>
-      </div>
-    </form>
+      </form>
 
-  </main>
+    </main>
 
-  <footer class="bg-dark text-center text-white" style="position: fixed;left: 0;
-  bottom: 0;
-  width: 100%;">
+    <footer class="bg-dark text-center text-white" style="position: fixed;left: 0; bottom: 0; width: 100%;">
 
-    <!-- Grid container -->
-  
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2022 Copyright:
-      <a class="text-white text-decoration-none" href="https://mdbootstrap.com/" >eCloudvalley</a>
-    </div>
-    <!-- Copyright -->
-  </footer>
-</body>
-
-
+      <!-- Grid container -->
     
-  
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2022 Copyright:
+        <a class="text-white text-decoration-none" href="https://mdbootstrap.com/" >eCloudvalley</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+
+  </body>
+
   <script src="scripts/main.js"></script>
   <script>
     const getValueInput = () =>{
@@ -266,7 +271,6 @@ function setBubble(range, bubble) {
     setTimeout(function(){
       $("#fade-div1").fadeIn(200)
     }, 200);
-    click_number +=1;
 }
 function showstep2() {
     console.log("show form")
@@ -274,7 +278,6 @@ function showstep2() {
     setTimeout(function(){
       $("#fade-div2").fadeIn(200)
     }, 200);
-    click_number +=1;
 }
 
 function showstep3() {
@@ -283,7 +286,6 @@ function showstep3() {
     setTimeout(function(){
       $("#fade-div3").fadeIn(200)
     }, 200);
-    click_number +=1;
 }
 
 function showstep4() {
@@ -292,9 +294,25 @@ function showstep4() {
     setTimeout(function(){
       $("#fade-div4").fadeIn(200)
     }, 200);
-    click_number +=1;
 }
 
+// select all 
+
+// document.getElementById('select-all').onclick = function() {
+//     var checkboxes = document.getElementsByID('res_types');
+//     for (var res_type of res_types) {
+//       res_type.checked = this.checked;
+//     }
+// }
+
+$(document).ready(function() {
+    $('#select-all').click(function() {
+        var checked = this.checked;
+        $('input[type="checkbox"]').each(function() {
+        this.checked = checked;
+    });
+    })
+});
   </script>
   <!-- <script>
   $(document).ready(function(){

@@ -40,19 +40,39 @@
       <div class="mt-2">
       <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
         <img src="static/9.png" width="50" height="50"/>
-        <span class="fs-4 text-white">Cloud Nine</span>
+        <span class="fs-4 text-white">Can Ideal</span>
       </a>
     </div>
-      <nav class="d-inline-flex mt-3 mt-md-0 ms-md-auto">
-        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">Calculator</a>
-        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="">Nutrition</a>
-        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">Button3</a>
-        <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#" >Button4</a>
-      </nav>
+    <nav class="d-inline-flex mt-3 mt-md-0 ms-md-auto">
+      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">首頁</a>
+      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#">卡路里地圖</a>
+      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="/calculator">熱量計算機</a>
+      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="">營養素計算機</a>
+      <a class="fs-5 p-3 text-dark text-decoration-none text-white" href="#" >關於我們</a>
+    </nav>
     </div>
 
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
       <h1 class="display-4 fw-normal">Bon Appetit!</h1>
+      <h2>Total consumption is {{calories}} calories.</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-2">
+          <a class="w-100 btn btn-lg btn-success mt-3" href="/" role="button">回首頁</a>
+        </div>
+        <div class="col-md-2">
+          <form action="/result" method="POST">
+            <div style="display:none;">
+              <input value="{{calories}}" name="calories"></input>
+              <input value="{{price}}" name="price"></input>
+              <input value="{{options}}" name="options"></input>
+              {% for type,pref in table %}
+              <input value="{{pref}}" name="{{type}}"></input>
+              {% endfor %}
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-danger mt-3">換一組</button>
+          </form>
+        </div>
+      </div>  
     </div>
   </header>
 
@@ -68,10 +88,15 @@
               <ul class="list-unstyled mt-3 mb-4">
                 <img src="static/donut.svg" width="50%" height="50%"></img>
                 <h4 id="bf_rest">麥當勞</h4>
-                <li id = "bf_rest_menu">吉士蛋堡</li>
+                <li id="bf_rest_menu">吉士蛋堡</li>
                 <li>$30</li>
               </ul>
-              <a href="/result-maps"><button type="button" class="w-100 btn btn-lg btn-outline-primary">Find restaurants</button></a>
+              <div style="height:400px">
+                <iframe height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=麥當勞&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="yes" marginheight="1" marginwidth="1"  >
+                </iframe>
+                </div>
+                <button type="button" class="w-100 btn btn-lg btn-dark mt-3">官方網站</button>
+                <button type="button" class="w-100 btn btn-lg btn-outline-dark mt-3">立即訂位</button>
             </div>
           </div>
         </div>
@@ -87,9 +112,14 @@
                 <img src="static/donut.svg" width="50%" height="50%"></img>
                 <h4 id="lc_rest">Subway</h4>
                 <li id="lc_rest_menu">火雞胸肉潛艇堡</li>
-                <li>90</li>
+                <li>$90</li>
               </ul>
-              <button type="button" class="w-100 btn btn-lg btn-primary">Find restaurants</button>
+              <div style="height:400px">
+                <iframe height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=Subway&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="yes" marginheight="1" marginwidth="1"  >
+                </iframe>
+                </div>
+                <button type="button" class="w-100 btn btn-lg btn-dark mt-3">官方網站</button>
+                <button type="button" class="w-100 btn btn-lg btn-outline-dark mt-3">立即訂位</button>
             </div>
           </div>
         </div>
@@ -102,11 +132,17 @@
               <h1 class="card-title pricing-card-title">700<small class="text-muted fw-light"> calories</small></h1>
               <ul class="list-unstyled mt-3 mb-4">
                 <img src="static/donut.svg" width="50%" height="50%"></img>
-                <h4 id ="din_rest", value="肯德基">肯德基</h4>
-                <li id="din_rest_menu" value="勁辣雞腿堡套餐">勁辣雞腿堡套餐</li>
-                <li>135</li>
+                <h4 id="din_rest">肯德基</h4>
+                <li id="din_rest_menu">勁辣雞腿堡套餐</li>
+                <li>$135</li>
               </ul>
-              <button type="button" onClick="find_restaurant()" class="w-100 btn btn-lg btn-outline-primary">Find restaurants</button>
+              <div style="height:400px">
+              <iframe height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=肯德基&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="yes" marginheight="1" marginwidth="1"  >
+              </iframe>
+              </div>
+              <button type="button" class="w-100 btn btn-lg btn-dark mt-3">官方網站</button>
+              <button type="button" class="w-100 btn btn-lg btn-outline-dark mt-3">立即訂位</button>
+              <!-- <button type="button" onClick="find_restaurant()" class="w-100 btn btn-lg btn-dark mt-3">Full Maps</button> -->
             </div>
           </div>
         </div>
